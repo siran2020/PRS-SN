@@ -1,0 +1,46 @@
+body {
+  background-color: black;
+  color: black;
+
+}
+h1 {
+  color: black;
+  text-align: center;
+}
+
+h1:visited {
+  color: black;
+}
+
+a {
+  color: red;
+}
+
+div {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  background-color: #ffffff;
+  background-color: white;
+  padding: 10px;
+}
+
+table, th, td {
+   border: 1px solid black;
+   outline: red solid 2px;
+}
+
+.top_row{
+  background-color: #000000;
+  color: white;
+}
+.hidden{
+  display: none;
+}
+
+.visible{
+  display:block;
+  outline: lightblue solid 2px;
+
+}
