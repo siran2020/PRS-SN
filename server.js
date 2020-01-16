@@ -139,7 +139,7 @@ app.get('/game', function(request, response) {
 app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
-    weapon: request.body.weapon
+    weapon: request.query.weapon
   };
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
