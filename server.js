@@ -90,6 +90,9 @@ app.get('/about', function(request, response) {
   response.render('about');
 });
 
+/*
+1. Array of villain names
+*/
 app.get('/game', function(request, response) {
   var user_data = {
     name: request.query.username,
@@ -104,7 +107,7 @@ app.get('/game', function(request, response) {
 
   for (var i = 1; i < userLines.length; i++) {
     var userInfo = userLines[i].split(",");
-    if ((user_data.name == userInfo[0]) && (user_data.password == userInfo[userInfo.length -1])) {
+    if ((user_data.name) && (user_data.name == userInfo[0]) && (user_data.password == userInfo[userInfo.length -1])) {
       console.log("MATCH " + userInfo[0] + ", " + userInfo[userInfo.length - 1]);
       logged_in = true;
     }
@@ -125,10 +128,18 @@ app.get('/game', function(request, response) {
   }
 });
 
+/*
+1. Request villan name and throw
+2. Add logic to see who won
+3. Update stats
+4. Add results.ejs
+  - display player and villain throw_choice
+  - display results in words
+*/
 app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
-    weapon: request.query.weapon
+    weapon: request.body.weapon
   };
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
