@@ -174,10 +174,16 @@ app.post('/:user/game', function(request, response) {
   };
 
   var villain_data = {
-    name: request.body.villain_name,
+    name: request.body.villain_name
     //weapon: request.body.weapon
   }
 
+//DO ONCHANGE IN EJS FILE
+//parse through villain names
+//split by space if needed
+//get last name
+//parse through images with "includes"
+//parse through those images for waiting
 
 
 //JSON.stringify(user_data)
