@@ -170,20 +170,49 @@ app.get('/game', function(request, response) {
 app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
-    weapon: request.body.weapon
+    weapon: request.body.weapon,
+
   };
 
   var villain_data = {
-    name: request.body.villain_name
-    //weapon: request.body.weapon
+    name: request.body.villain_name,
+    weapon: "Paper"
   }
 
-//DO ONCHANGE IN EJS FILE
-//parse through villain names
-//split by space if needed
-//get last name
-//parse through images with "includes"
-//parse through those images for waiting
+  var userWin;
+  var userTie;
+  var userLoss;
+
+  if (user_data.weapon == villain_data.weapon){
+    userTie = true;
+  }
+
+  else if (user_data.weapon == "Rock"){
+    if (villain_data.weapon == "Scissors") {
+      userWin = true;
+    }
+    if (villain_data.weapon == "Paper") {
+      userWin = false;
+    }
+  }
+
+  else if (user_data.weapon == "Paper"){
+    if (villain_data.weapon == "Rock") {
+      userWin = true;
+    }
+    if (villain_data.weapon == "Scissors") {
+      userWin = false;
+    }
+  }
+
+  else if (user_data.weapon == "Scissors"){
+    if (villain_data.weapon == "Paper") {
+      userWin = true;
+    }
+    if (villain_data.weapon == "Rock") {
+      userWin = false;
+    }
+  }
 
 
 //JSON.stringify(user_data)

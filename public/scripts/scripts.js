@@ -15,9 +15,14 @@ document.getElementById("villain_dropdown").addEventListener("change", function(
   console.log("villain image working");
   var image = document.getElementById("villain_image");
   var select = document.getElementsByTagName('select')[1];
-  console.log(select);
+console.log(select.value);
+  select = "/images/" + select.value + "_waiting.svg";
+
+//  /images/<%=data.villains[i].name%>_waiting.svg
+//  if (select.value ==)//select = select.value.replace(' ','_');
+
+  console.log(select.value);
   image.src = select.value;
-  //console.log(image.src);
   console.log('set src to ' + select.value);
 
 });

@@ -17,11 +17,12 @@
 
   <div id="feedback">
 
-  </div>
+</div id="weapon_dropdown_section">
   <div id="throw_choice">
     <h2>Play the Game</h2>
     <h4><%=user.name%> it's your turn to bust a move!</h4>
     <form action="<%=user.name%>/game" method="post">
+      <div>
       Enter your choice of weapon:<br>
       <select id="player_weapon" name="weapon">
         <option value=" "> </option>
@@ -29,17 +30,26 @@
         <option value="Rock">Rock</option>
         <option value="Scissors">Scissors</option>
       </select>
+</div>
 
-      <img id="villain_image" src="/images/bones_waiting.svg">
-      Enter your choice of Villian:<br>
-      <select id="villain_dropdown" name="imageList">
+<div id="villain_dropdown_section">
+
+  <img id="villain_image" src="">
+      <br>Enter your choice of Villian:<br>
+
+      <select name="villain_name" id="villain_dropdown">
         <option value=" "></option>
         <% for (i=0; i < data.villains.length; i++) { %>
-          <option value="/images/<%=data.villains[i].name%>_waiting.svg">
+          <option id="villain_name" value="<%=data.villains[i].name%>">
             <%= data.villains[i].name %>
           </option>
+
         <% } %>
+
       </select>
+
+
+  </div>
       <button type="submit">Shoot!</button>
 
     </form>
