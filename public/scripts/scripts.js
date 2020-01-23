@@ -1,22 +1,25 @@
 var player_name = localStorage.getItem("player_name");
 
-if(!player_name){
-  showOrNot(document.getElementById("enter_name"), true);
-}else {
-  updateNames(player_name);
-  showOrNot(document.getElementById("throw_choice"), true);
-}
+
+console.log("test");
 
 ///////////////////Event Listions//////////////////
-toggleVisibility(document.getElementById("show_rules_button"), document.getElementById("rules"));
-toggleVisibility(document.getElementById("show_stats_button"), document.getElementById("stats"));
+document.getElementById("player_weapon").addEventListener("change", function(){
+  console.log("player weapon working");
 
-document.getElementById("enter_name_button").addEventListener("click", function(){
-  var p_name=document.getElementById("enter_name_input").value;
-  localStorage.setItem("player_name",p_name);
-  showOrNot(document.getElementById("enter_name"), false);
-  showOrNot(document.getElementById("throw_choice"), true);
-  updateNames(p_name);
+
+});
+//console.log(document.getElementById("villain_dropdown"));
+
+document.getElementById("villain_dropdown").addEventListener("change", function(){
+  console.log("villain image working");
+  var image = document.getElementById("villain_image");
+  var select = document.getElementsByTagName('select')[1];
+  console.log(select);
+  image.src = select.value;
+  //console.log(image.src);
+  console.log('set src to ' + select.value);
+
 });
 
 ///////////////////Helper function//////////////////
@@ -28,7 +31,7 @@ function updateNames(name){
   }
 }
 
-function showOrNot(div_element, show){
+/*function showOrNot(div_element, show){
   if(show && div_element.classList.contains("hidden")){
     div_element.classList.remove("hidden");
     div_element.classList.add("visible");
@@ -36,6 +39,7 @@ function showOrNot(div_element, show){
     div_element.classList.remove("visible");
     div_element.classList.add("hidden");
     }
+    //
 }
 
 function toggleVisibility(button_element, div_element){
@@ -48,4 +52,12 @@ function toggleVisibility(button_element, div_element){
       div_element.classList.add("hidden");
       }
   });
-}
+}*/
+
+//function villainImage() {
+//  console.log("villainImage working");
+//  var image = document.getElementById("villain_image");
+//  var select = document.getElementsByTagName('select')[1];
+//  image.src = select.value.charAt(0).toLowerCase();
+//  console.log('set src to ' + select.value);
+//}

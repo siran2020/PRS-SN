@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <!--
-1. Dynamic Villan Dropdown
+1. Dynamic Villan Dropdown (done)
 2. Dynamic Waiting Picture for villain Choice
-3. Send choice to server
+3. Send choice to server (done)
 -->
 <head>
   <title>P,R,S - Game</title>
@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+
   <% include global/header %>
 
   <div id="feedback">
@@ -21,28 +23,27 @@
     <h4><%=user.name%> it's your turn to bust a move!</h4>
     <form action="<%=user.name%>/game" method="post">
       Enter your choice of weapon:<br>
-      <select name="weapon">
+      <select id="player_weapon" name="weapon">
         <option value=" "> </option>
         <option value="Paper">Paper</option>
         <option value="Rock">Rock</option>
         <option value="Scissors">Scissors</option>
       </select>
 
+      <img id="villain_image" src="/images/bones_waiting.svg">
       Enter your choice of Villian:<br>
-      <select name="villain_name">
+      <select id="villain_dropdown" name="imageList">
         <option value=" "></option>
         <% for (i=0; i < data.villains.length; i++) { %>
-          <option value="<%=data.villains[i].name%>">
+          <option value="/images/<%=data.villains[i].name%>_waiting.svg">
             <%= data.villains[i].name %>
           </option>
         <% } %>
       </select>
-
       <button type="submit">Shoot!</button>
 
     </form>
 
-    <img src="/images/<%=villain_image%>.svg">
 
 
 
@@ -53,7 +54,8 @@
   <footer>
     Brought to you by the cool kids of Software Engineering - Fall, 2018.
   </footer>
-  <script src="scripts/scripts.js"></script>
+  <script src="/scripts/scripts.js"></script>
+
 </body>
 
 </html>
