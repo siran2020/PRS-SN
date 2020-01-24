@@ -10,7 +10,7 @@
   <div id="results">
     <h2> <%= user.name %> vs. <%= villain.name %> Results</h2>
     <p>You have chosen: <%= user.weapon %></p>
-    <img id="villain_image" src="">
+    <img id="villain_image" src="/images/<%=villain.name.toLowerCase()%>_<%=villain.weapon.toLowerCase()%>.svg">
     <p><%= villain.name %> chose: <%= villain.weapon %></p>
     <p><%= villain.name %> now has <%= villain.wins %> wins and <%= villain.losses %> losses</p>
     <p><%= user.name %> now has <%= user.wins %> wins and <%= user.losses %> losses
