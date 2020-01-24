@@ -1,13 +1,13 @@
-name,paper,rock,scissors,paper_strategy,rock_strategy,scissors_strategy,wins,losses
-Bones,4,8,3,0.33,0.33,0.33,7,3
-Comic Hans,3,2,1,0.9,0.01,0.09,2,1
-Gato,5,3,1,0.33,0.33,0.33,3,2
-Harry,4,2,6,0.33,0.33,0.33,5,3
-Manny,7,3,2,0.33,0.33,0.33,1,2
-Mickey,4,4,4,0.33,0.33,0.33,1,1
-Mr. Modern,3,9,8,0.33,0.33,0.33,1,6
-Pixie,3,8,6,0.33,0.33,0.33,4,3
-Regal,3,7,2,0.1,0.45,0.45,1,2
-Spock,8,1,2,0.2,0.2,0.6,3,5
-The Boss,5,7,3,0.1,0.8,0.1,3,6
-The Magician,8,2,4,0.33,0.33,0.33,7,2
+name,paper,rock,scissors,paper_strategy,rock_strategy,scissors_strategy,wins,losses,description
+Bones,0,0,0,0.33,0.33,0.33,7,3,"Bones has risen from the dead to reclaim his title as PRS champion."
+Comic Hans,0,0,0,0.9,0.01,0.09,2,1,"Comic Hans is ready to show off some serious handywork."
+Gato,0,0,0,0.33,0.33,0.33,3,2,"Gato's strategy is unparalleled."
+Harry,0,0,0,0.33,0.33,0.33,5,3,"Harry Potter's lesser known alter ego is a PRS fanatic."
+Manny,0,0,0,0.33,0.33,0.33,1,2,"Manny has come to defeat you in style."
+Mickey,0,0,0,0.33,0.33,0.33,1,1,"Mickey sports gloves so his hands don't get soiled by your tears. When you lose."
+Mr. Modern,0,0,0,0.33,0.33,0.33,1,6,"Simple but effective, Mr. Modern doesn't hold back when it comes to PRS."
+Pixie,0,0,0,0.33,0.33,0.33,4,3,"Pixie will paint your road to failure."
+Regal,0,0,0,0.1,0.45,0.45,1,2,"Regal has got nothing to lose, for he has already won."
+Spock,0,0,0,0.2,0.2,0.6,3,5,"Spock has come to rep the Enterprise."
+The Boss,0,0,0,0.1,0.8,0.1,3,6,"The Boss wishes you luck, because you'll need it."
+The Magician,0,0,0,0.33,0.33,0.33,7,2,"You won't even see The Magician win, he'll already be gone."

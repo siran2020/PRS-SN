@@ -10,8 +10,34 @@
   <div id="results">
     <h2> <%= user.name %> vs. <%= villain.name %> Results</h2>
     <p>You have chosen: <%= user.weapon %></p>
-    <p>You have played against: <%= villain.name %></p>
+    <img id="villain_image" src="">
+    <p><%= villain.name %> chose: <%= villain.weapon %></p>
+    <p><%= villain.name %> now has <%= villain.wins %> wins and <%= villain.losses %> losses</p>
+    <p><%= user.name %> now has <%= user.wins %> wins and <%= user.losses %> losses
+
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Games Won</th>
+          <th>Games Lost</th>
+          <th>Games Tied</th>
+        </tr>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.wins %></td>
+          <td><%= user.losses %></td>
+          <td><%= user.ties %></td>
+        </tr>
+
+        <tr>
+          <td><%= villain.name %></td>
+          <td><%= villain.wins %></td>
+          <td><%= villain.losses %></td>
+          <td><%= villain.ties %></td>
+        </tr>
+      </table>
   </div>
+
 
 
   <footer>

@@ -1,6 +1,7 @@
 var player_name = localStorage.getItem("player_name");
 
 
+
 console.log("test");
 
 ///////////////////Event Listions//////////////////
@@ -15,17 +16,36 @@ document.getElementById("villain_dropdown").addEventListener("change", function(
   console.log("villain image working");
   var image = document.getElementById("villain_image");
   var select = document.getElementsByTagName('select')[1];
-console.log(select.value);
-  select = "/images/" + select.value + "_waiting.svg";
-
-//  /images/<%=data.villains[i].name%>_waiting.svg
-//  if (select.value ==)//select = select.value.replace(' ','_');
 
   console.log(select.value);
-  image.src = select.value;
+
+  if (select.value == "Mr.Modern") {
+    console.log("this is mr.modern");
+    image.src = "/images/mr_modern_waiting.svg";
+  }
+
+  else if (select.value == "Comic Hans") {
+    image.src = "/images/comic_hans_waiting.svg";
+
+  }
+
+  else if (select.value == "The Boss") {
+    image.src = "/images/the_boss_waiting.svg";
+
+  }
+
+  else if (select.value == "The Magician") {
+    image.src = "/images/the_magician_waiting.svg";
+
+  }
+
+  else {
+  image.src = "/images/" + select.value + "_waiting.svg";
   console.log('set src to ' + select.value);
+}
 
 });
+
 
 ///////////////////Helper function//////////////////
 function updateNames(name){

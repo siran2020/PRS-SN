@@ -36,19 +36,17 @@
 
   <img id="villain_image" src="">
       <br>Enter your choice of Villian:<br>
-
+      <% var villaintext = ""; %>
       <select name="villain_name" id="villain_dropdown">
         <option value=" "></option>
         <% for (i=0; i < data.villains.length; i++) { %>
           <option id="villain_name" value="<%=data.villains[i].name%>">
             <%= data.villains[i].name %>
+
           </option>
 
         <% } %>
-
       </select>
-
-
   </div>
       <button type="submit">Shoot!</button>
 
