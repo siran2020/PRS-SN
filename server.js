@@ -53,10 +53,15 @@ app.get('/stats', function(request, response) {
     user["games_lost"] = userInfo[3];
     user["games_won"] = userInfo[2];
     user["games_tied"] = parseInt(user["total_games"] - parseInt(user["games_lost"]) - parseInt(user["games_won"]));
+    user["winPercent"] = Math.round((user["games_won"]/(user["total_games"]))*100);
 
     if (user["name"]) {
       statsData["users"].push(user);
     }
+
+    statsData["users"].sort(function(a,b) {
+      return b.winPercent - a.winPercent
+    });
   }
 
   var villainFile = fs.readFileSync('data/villains.csv', 'utf8');
@@ -173,6 +178,7 @@ app.post('/:user/game', function(request, response) {
   var userWin;
   var userTie;
   var userLoss;
+  var gameStatus;
   var villainWin;
   var villainTie;
   var villainLoss;
@@ -186,7 +192,8 @@ app.post('/:user/game', function(request, response) {
     weapon: request.body.weapon,
     wins: userWin,
     losses: userLoss,
-    ties: userTie
+    ties: userTie,
+    game: gameStatus
   };
 
   var villain_data = {
@@ -235,9 +242,9 @@ app.post('/:user/game', function(request, response) {
     var userInfo = userLines[i].split(",");
     var user = {};
     user["name"] = userInfo[0];
-    user["total_games"] = userInfo[1];
-    user["games_lost"] = userInfo[3];
-    user["games_won"] = userInfo[2];
+    user["total_games"] = parseInt(userInfo[1]);
+    user["games_lost"] = parseInt(userInfo[3]);
+    user["games_won"] = parseInt(userInfo[2]);
     user["games_tied"] = parseInt(user["total_games"] - parseInt(user["games_lost"]) - parseInt(user["games_won"]));
 
     if (user["name"] == user_data.name) {
@@ -273,13 +280,14 @@ console.log("Villain chose " + villain_data.weapon);
 
   if (user_data.weapon == villain_data.weapon){
     console.log("There was a tie");
-    statsData["users"][0].ties = statsData["users"][0].ties + 1;
+    statsData["users"][0].games_tied = statsData["users"][0].games_tied + 1;
     statsData["villains"][0].ties = statsData["villains"][0].ties + 1;
 
     villain_data.ties = statsData["villains"][0].ties;
-    user_data.ties = statsData["users"][0].ties;
+    user_data.ties = statsData["users"][0].games_tied;
 
 
+    user_data.game = "There was a tie.";
   }
 
   else if (user_data.weapon == "Rock"){
@@ -289,10 +297,14 @@ console.log("Villain chose " + villain_data.weapon);
       villain_data.losses = statsData["villains"][0].losses;
       villain_data.wins = statsData["villains"][0].wins;
 
-      statsData["users"][0].wins = statsData["users"][0].wins + 1;
-      user_data.wins = statsData["users"][0].wins;
-      user_data.losses = statsData["users"][0].losses;
+      statsData["users"][0].games_won = statsData["users"][0].games_won + 1;
+      user_data.wins = statsData["users"][0].games_won;
+      user_data.losses = statsData["users"][0].games_lost;
 
+      villain_data.ties = statsData["villains"][0].ties;
+      user_data.ties = statsData["users"][0].games_tied;
+
+      user_data.game = "You win.";
 
 
     }
@@ -303,8 +315,14 @@ console.log("Villain chose " + villain_data.weapon);
       villain_data.losses = statsData["villains"][0].losses;
 
       statsData["users"][0].losses = statsData["users"][0].losses + 1;
-      user_data.losses = statsData["users"][0].losses;
-      user_data.wins= statsData["users"][0].wins;
+      user_data.losses = statsData["users"][0].games_lost;
+      user_data.wins= statsData["users"][0].games_won;
+
+      villain_data.ties = statsData["villains"][0].ties;
+      user_data.ties = statsData["users"][0].games_tied;
+
+      user_data.game = "You lose.";
+
 
     }
   }
@@ -312,13 +330,19 @@ console.log("Villain chose " + villain_data.weapon);
   else if (user_data.weapon == "Paper"){
     if (villain_data.weapon == "Rock") {
       console.log("You chose Paper. Villain chose Rock. You win.");
-      statsData["villains"][0].losses = statsData["villains"][0].losses + 1;
-      villain_data.losses = statsData["villains"][0].losses;
+      statsData["villains"][0].games_lost = statsData["villains"][0].games_lost + 1;
+      villain_data.losses = statsData["villains"][0].games_lost;
       villain_data.wins = statsData["villains"][0].wins;
 
-      statsData["users"][0].wins = statsData["users"][0].wins + 1;
-      user_data.wins = statsData["users"][0].wins;
+      statsData["users"][0].games_won = statsData["users"][0].games_won + 1;
+      user_data.wins = statsData["users"][0].games_won;
       user_data.losses = statsData["users"][0].losses;
+
+      villain_data.ties = statsData["villains"][0].ties;
+      user_data.ties = statsData["users"][0].games_tied;
+
+      user_data.game = "You win.";
+
 
 
     //  statsData["villains"][0].losses ++;
@@ -329,11 +353,17 @@ console.log("Villain chose " + villain_data.weapon);
       userLoss ++;
         statsData["villains"][0].wins = statsData["villains"][0].wins + 1;
             villain_data.wins = statsData["villains"][0].wins;
-            villain_data.losses = statsData["villains"][0].losses;
+            villain_data.losses = statsData["villains"][0].games_lost;
 
-            statsData["users"][0].losses = statsData["users"][0].losses + 1;
-            user_data.losses = statsData["users"][0].losses;
-            user_data.wins= statsData["users"][0].wins;
+            statsData["users"][0].games_lost = statsData["users"][0].games_lost + 1;
+            user_data.losses = statsData["users"][0].games_lost;
+            user_data.wins= statsData["users"][0].games_won;
+
+            villain_data.ties = statsData["villains"][0].ties;
+            user_data.ties = statsData["users"][0].games_tied;
+
+            user_data.game = "You lose.";
+
 
     }
   }
@@ -346,9 +376,15 @@ console.log("Villain chose " + villain_data.weapon);
       villain_data.losses = statsData["villains"][0].losses;
       villain_data.wins = statsData["villains"][0].wins;
 
-      statsData["users"][0].wins = statsData["users"][0].wins + 1;
-      user_data.wins = statsData["users"][0].wins;
-      user_data.losses = statsData["users"][0].losses;
+      statsData["users"][0].games_won = statsData["users"][0].games_won + 1;
+      user_data.wins = statsData["users"][0].games_won;
+      user_data.losses = statsData["users"][0].games_lost;
+
+      villain_data.ties = statsData["villains"][0].ties;
+      user_data.ties = statsData["users"][0].games_tied;
+
+      user_data.game = "You win.";
+
 
 
 
@@ -360,15 +396,21 @@ console.log("Villain chose " + villain_data.weapon);
       villain_data.wins = statsData["villains"][0].wins;
       villain_data.losses = statsData["villains"][0].losses;
 
-      statsData["users"][0].losses = statsData["users"][0].losses + 1;
-      user_data.losses = statsData["users"][0].losses;
-      user_data.wins= statsData["users"][0].wins;
+      statsData["users"][0].games_lost = statsData["users"][0].games_lost + 1;
+      user_data.losses = statsData["users"][0].games_lost;
+      user_data.wins= statsData["users"][0].games_won;
 
+      villain_data.ties = statsData["villains"][0].ties;
+      user_data.ties = statsData["users"][0].games_tied;
+
+      user_data.game = "You lose.";
 
     }
   }
 
   console.log(statsData["villains"][0]);
+  console.log(statsData["users"][0]);
+
 
 
 
