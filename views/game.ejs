@@ -36,7 +36,6 @@
 
   <img id="villain_image" src="">
       <br>Enter your choice of Villian:<br>
-      <% var villaintext = ""; %>
       <select name="villain_name" id="villain_dropdown">
         <option value=" "></option>
         <% for (i=0; i < data.villains.length; i++) { %>
@@ -47,6 +46,10 @@
 
         <% } %>
       </select>
+      <p id="villain_description" value="">
+        Villain description will display here.
+      </p>
+
   </div>
       <button type="submit">Shoot!</button>
 
@@ -59,9 +62,7 @@
 
 
   </div>
-  <footer>
-    Brought to you by the cool kids of Software Engineering - Fall, 2018.
-  </footer>
+  <% include global/footer %>
   <script src="/scripts/scripts.js"></script>
 
 </body>

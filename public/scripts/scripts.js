@@ -16,7 +16,9 @@ document.getElementById("villain_dropdown").addEventListener("change", function(
   console.log("villain image working");
   var image = document.getElementById("villain_image");
   var select = document.getElementsByTagName('select')[1];
+  var text = document.getElementById("villain_description").innerHTML;
 
+  console.log(text);
   console.log(select.value);
 
   if (select.value == "Mr.Modern") {
@@ -42,6 +44,7 @@ document.getElementById("villain_dropdown").addEventListener("change", function(
   else {
   image.src = "/images/" + select.value + "_waiting.svg";
   console.log('set src to ' + select.value);
+  text = "hello";
 }
 
 });
